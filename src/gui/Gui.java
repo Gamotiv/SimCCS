@@ -175,7 +175,7 @@ public class Gui extends Application {
             public void handle(ActionEvent e) {
                 DirectoryChooser directoryChooser = new DirectoryChooser();
                 directoryChooser.setTitle("Open Dataset");
-                directoryChooser.setInitialDirectory(new File("F:\\Cortex\\Sim CCS\\SimCCS-public\\Datasets"));
+                directoryChooser.setInitialDirectory(new File("F:\\Cortex\\Sim CCS og\\SimCCS-public\\Datasets"));
                 File selectedDataset = directoryChooser.showDialog(stage);
                 if (selectedDataset != null) {
                     //to reposition the display pane to the visible area

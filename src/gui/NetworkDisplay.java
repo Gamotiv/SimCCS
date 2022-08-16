@@ -108,6 +108,11 @@ class SceneGestures {
                 sceneDragContext.translateAnchorX = canvas.getTranslateX();
                 sceneDragContext.translateAnchorY = canvas.getTranslateY();
             } else if (event.isSecondaryButtonDown()) {
+                sceneDragContext.mouseAnchorX = event.getSceneX();
+                sceneDragContext.mouseAnchorY = event.getSceneY();
+
+                sceneDragContext.translateAnchorX = canvas.getTranslateX();
+                sceneDragContext.translateAnchorY = canvas.getTranslateY();
                 // Up for grabs.
                 canvas.getControlActions().getMessenger().setText("Cell number: " + canvas.getControlActions().displayXYToVectorized(event.getX(), event.getY()));
                 /*int cellNum = canvas.controlActions.displayXYToVectorized(event.getX(), event.getY());

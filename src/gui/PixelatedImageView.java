@@ -14,7 +14,8 @@ import javafx.scene.image.ImageView;
  * @author yaw
  */
 public class PixelatedImageView extends ImageView {
-    @Override protected NGNode impl_createPeer() {
+    //@Override
+    protected NGNode impl_createPeer() {
         return new NGImageView() {
             private Image image;
 
