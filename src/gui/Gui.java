@@ -1,6 +1,7 @@
 package gui;
-
 import java.io.File;
+//yes
+import dataStore.DataStorer;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.beans.value.ChangeListener;
@@ -49,6 +50,7 @@ public class Gui extends Application {
     private AnchorPane solutionPane;
     private TextArea messenger;
 
+
     @Override
     public void start(Stage stage) {
         Scene scene = buildGUI(stage);
@@ -79,8 +81,11 @@ public class Gui extends Application {
         // Add base cost surface display.
         PixelatedImageView map = new PixelatedImageView();
         map.setPreserveRatio(true);
+        //was 830
+        /*
         map.setFitWidth(830);
         map.setFitHeight(660);
+        */
         map.setSmooth(false);
         displayPane.getChildren().add(map);
 
@@ -119,10 +124,10 @@ public class Gui extends Application {
         // Clear messenger when clicking in control area.
         tabPane.addEventFilter(MouseEvent.MOUSE_CLICKED,
                 new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                //messenger.clear();
-            }
-        });
+                    public void handle(MouseEvent event) {
+                        //messenger.clear();
+                    }
+                });
 
         // Build data pane.
         AnchorPane dataPane = new AnchorPane();
@@ -157,6 +162,7 @@ public class Gui extends Application {
             @Override
             public void changed(ObservableValue<? extends String> selected, String oldScenario, String newScenario) {
                 controlActions.selectScenario(newScenario, background, runChoice);
+
             }
         });
 
@@ -169,10 +175,16 @@ public class Gui extends Application {
             public void handle(ActionEvent e) {
                 DirectoryChooser directoryChooser = new DirectoryChooser();
                 directoryChooser.setTitle("Open Dataset");
+                directoryChooser.setInitialDirectory(new File("F:\\Cortex\\Sim CCS\\SimCCS-public\\Datasets"));
                 File selectedDataset = directoryChooser.showDialog(stage);
                 if (selectedDataset != null) {
+                    //to reposition the display pane to the visible area
+                    displayPane.setTranslateX(220);
+                    displayPane.setTranslateY(0);
                     openDataset.setText(selectedDataset.getName());
                     controlActions.selectDataset(selectedDataset, scenarioChoice);
+                    scenarioChoice.getSelectionModel().selectFirst();
+
                 }
             }
         });
@@ -241,6 +253,7 @@ public class Gui extends Application {
         });
 
         Label sourceLabel = new Label("Sources:");
+        sourceLabel.setTextFill(Color.SALMON);
         sourceLabel.setLayoutX(2);
         sourceLabel.setLayoutY(5);
         selectionPane.getChildren().add(sourceLabel);
@@ -287,6 +300,7 @@ public class Gui extends Application {
         Label sinkLabel = new Label("Sinks:");
         sinkLabel.setLayoutX(19);
         sinkLabel.setLayoutY(30);
+        sinkLabel.setTextFill(Color.CORNFLOWERBLUE);
         selectionPane.getChildren().add(sinkLabel);
 
         // Toggle sink locations display button.
